@@ -1,0 +1,36 @@
+colony: UCAnt // first line specifies the ant's name
+ 
+// This program controls a single ant and causes it to move
+// around the field and do things.
+// This ant moves around randomly, picks up food if it
+// happens to stumble upon it, eats when it gets hungry,
+// and will drop food on its anthill if it happens to 
+// stumble back on its anthill while holding food.
+ 
+// here's the ant's programming instructions, written
+// in our 'Bugs' language
+ 
+start:
+	moveForward
+	if i_am_standing_on_my_anthill then goto eat_food
+ 	if i_am_standing_on_food then goto on_food
+ 	if i_am_hungry then goto eat_food
+ 	goto start 	// jump back to the "start:" line
+ 
+on_food:
+ 	pickUpFood
+	rotateCounterClockwise
+	rotateCounterClockwise
+ 	goto start 	// jump back to the "start:" line
+ 
+eat_food:
+ 	eatFood          // assumes our ant has already picked up
+	dropFood 
+	rotateClockwise
+	rotateClockwise
+ 	goto start 	// jump back to the "start:" line
+ 
+on_hill:
+	rotateClockwise
+	rotateClockwise
+	goto start // jump back to the "start:" line
